@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Geolet demo</title>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+		<script src="geolet.js"></script><!-- include geolet.js after leaflet.js -->
+	</head>
+	<body>
+		<div id="map" style="position:absolute;top:0;right:0;bottom:0;left:0"></div>
+		<script>
+			var map = L.map('map');
+			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(map);
+			map.fitBounds([[75, 90], [-45, -90]]);
+			L.geolet({
+				position: 'bottomleft'
+			}).addTo(map);
+		</script>
+	</body>
+</html>
