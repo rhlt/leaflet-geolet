@@ -11,6 +11,8 @@ This Leaflet plugin adds a __geolocation button__ to your Leaflet based map. Aft
 Current version: 20.12.26\
 Requires Leaflet 1.0.0 or above
 
+__[DOWNLOAD geolet.js](https://raw.githubusercontent.com/rhlt/leaflet-geolet/main/geolet.js)__
+
 ## How to use
 
 Simply include `geolet.js` in your page, after Leaflet itself. Then, in its most basic form (as in the demo linked above and included as `demo.html`), all you need is this line of code:
