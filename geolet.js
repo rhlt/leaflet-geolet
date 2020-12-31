@@ -24,7 +24,7 @@ https://github.com/rhlt/leaflet-geolet/
 			object1 = {};
 			
 		for (key in object2) if (({}).hasOwnProperty.call(object2, key)) {
-			if (typeof object2[key] == 'object' && object2[key] !== null && typeof object2[key].prototype == 'undefined') {
+			if (typeof object2[key] == 'object' && object2[key] !== null && Object.getPrototypeOf(object2[key]) == Object.getPrototypeOf({})) {
 				//Plain object: merge the next level
 				object1[key] = _merge(object1[key], object2[key]);
 			} else {
