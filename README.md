@@ -7,7 +7,7 @@ __[CLICK HERE FOR A LIVE DEMO](https://rubenholthuijsen.nl/geolet/demo)__ ([mirr
 
 This Leaflet plugin adds a __geolocation button__ to your Leaflet based map. After clicking it, a marker will be added to the map at the user's location. A click on that marker opens a popup, the content of which is generated as the user's location changes. All of this is completely customizable, but usable out of the box with just a single line of code.
 
-Current version: 20.12.31\
+Current version: 20.12.31 ([changelog](https://github.com/rhlt/leaflet-geolet/blob/main/CHANGELOG.md))\
 Requires Leaflet 1.0.0 or above
 
 __[DOWNLOAD geolet.js](https://raw.githubusercontent.com/rhlt/leaflet-geolet/main/geolet.js)__
