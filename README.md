@@ -1,14 +1,13 @@
 # GEOLET
 
-_A simple but highly customizable geolocation plugin for [Leaflet](https://github.com/leaflet/leaflet)_
-
+_A simple but highly customizable geolocation plugin for [Leaflet](https://github.com/leaflet/leaflet)_\
 _by Ruben Holthuijsen_
 
 __[CLICK HERE FOR A LIVE DEMO](https://rubenholthuijsen.nl/geolet/demo)__ ([mirror](https://rhlt.github.io/leaflet-geolet/demo.html))
 
 This Leaflet plugin adds a __geolocation button__ to your Leaflet based map. After clicking it, a marker will be added to the map at the user's location. A click on that marker opens a popup, the content of which is generated as the user's location changes. All of this is completely customizable, but usable out of the box with just a single line of code.
 
-Current version: 20.12.26\
+Current version: 20.12.31\
 Requires Leaflet 1.0.0 or above
 
 __[DOWNLOAD geolet.js](https://raw.githubusercontent.com/rhlt/leaflet-geolet/main/geolet.js)__
@@ -26,7 +25,7 @@ This will add a geolocation button at the bottom left part of the map screen. He
 The Geolet control accepts the following options, which can be added to the options object (the part with `{ position: 'bottomleft' }` in the line above):
 
 #### position
-Default: `'topright'`\
+_default:_ `'topright'`\
 Inherited from [Leaflet's Control class](https://leafletjs.com/reference-1.7.1.html#control)\
 This defines where the control is shown. Possible values are `topleft`, `topright`, `bottomleft`, and `bottomright`.
 
@@ -120,8 +119,9 @@ The following events will be fired _on the map containing the control_. Use a fu
 `map.on('geolet_success', function (data) { /* use e.g. data.latlng */ });`
 
 #### geolet_success
-Fired whenever a location is found. This may be very often. The `data` object will have the following keys:\
+Fired whenever a location is found. This may be very often, so it is advisable to do some things (such as moving the map to the found location) only when `first` is true. The `data` object will have the following keys:\
 `control`: the control that has fired the event;\
+`first`: whether this is the first time since activation that a location has been found _(added in 20.12.31)_;\
 `marker`: the marker that has been added to the map;\
 `latlng`: the coordinates (as an [L.LatLng](https://leafletjs.com/reference-1.7.1.html#latlng) object) of the user's location;\
 `raw`: the raw [GeolocationPosition](https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPosition) object returned by the browser;
