@@ -1,5 +1,5 @@
 /*
-GEOLET version 20.12.26
+GEOLET version 20.12.31
 Copyright (c) 2020 Ruben Holthuijsen; available under the MIT license
 https://github.com/rhlt/leaflet-geolet/
 */
@@ -16,10 +16,22 @@ https://github.com/rhlt/leaflet-geolet/
 	}
 	
 	var _merge = function (object1, object2) {
-		//Merge all properties from object 2 into object 1
+		//Merge all properties from object 2 into object 1, recursively for plain objects
 		
-		for (key in object2)
-			object1[key] = object2[key];
+		if (typeof object2 != 'object' || object2 === null)
+			return object1;
+		if (typeof object1 != 'object' || object1 === null)
+			object1 = {};
+			
+		for (key in object2) if (({}).hasOwnProperty.call(object2, key)) {
+			if (typeof object2[key] == 'object' && object2[key] !== null && typeof object2[key].prototype == 'undefined') {
+				//Plain object: merge the next level
+				object1[key] = _merge(object1[key], object2[key]);
+			} else {
+				//Anything else (including typed objects): just assign it
+				object1[key] = object2[key];
+			}
+		}
 
 		return object1;
 	};
@@ -109,6 +121,7 @@ https://github.com/rhlt/leaflet-geolet/
 			var control = this;
 			
 			var geoSuccessCallback = function (data) {
+				var first = !!control._first;
 				control._latLng = L.latLng(data.coords.latitude, data.coords.longitude, data.coords.altitude);
 				control._popupContent = control.options.popupContent;
 				if (control._popup) {
@@ -126,6 +139,7 @@ https://github.com/rhlt/leaflet-geolet/
 				}
 				control._map.fire('geolet_success', {
 					control: control,
+					first: first,
 					marker: control._marker,
 					latlng: control._latLng, //"latlng" all-lowercase for consistency with Leaflet's MouseEvent
 					raw: data
